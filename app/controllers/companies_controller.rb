@@ -5,7 +5,7 @@ class CompaniesController < ApplicationController
   end
 
   def create
-    @company = Company.new(account_params)
+    @company = Company.new(company_params)
 
     if @company.save
       session[:user_id] = @company.id
@@ -18,7 +18,7 @@ class CompaniesController < ApplicationController
 
   private
 
-  def account_params
+  def company_params
     params.require(:company).permit(
       :email,
       :password,

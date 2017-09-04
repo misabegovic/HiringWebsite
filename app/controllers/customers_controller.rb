@@ -5,7 +5,7 @@ class CustomersController < ApplicationController
   end
 
   def create
-    @customer = Customer.new(account_params)
+    @customer = Customer.new(customer_params)
 
     if @customer.save
       session[:user_id] = @customer.id
@@ -18,7 +18,7 @@ class CustomersController < ApplicationController
 
   private
 
-  def account_params
+  def customer_params
     params.require(:customer).permit(
       :email,
       :password,

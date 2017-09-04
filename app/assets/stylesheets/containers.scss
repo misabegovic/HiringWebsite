@@ -1,0 +1,14 @@
+.banner-full {
+  width: 100%;
+  margin-top: -#{$s-largest};
+  min-height: 400px;
+  align-items: center;
+  background-color: slategrey;
+  @include display-flex;
+}
+
+.seperate-top-bottom {
+	margin-top: $s-large;
+	margin-bottom: $s-large;
+	text-align: center;
+}
