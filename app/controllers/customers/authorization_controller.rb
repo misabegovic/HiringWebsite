@@ -5,9 +5,9 @@ module Customers
     def check_if_customer
       if session[:user_id].present?
         customer = Customer.find_by(id: session[:user_id])
-        redirect_to root_path unless customer.present?
+        redirect_to new_session_path unless customer.present?
       else
-        redirect_to root_path
+        redirect_to new_session_path
       end
     end
   end
