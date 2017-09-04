@@ -1,0 +1,22 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-offset-md-3">
+      <%= form_with scope: :session, url: sessions_path, local: true, method: :post do |f| %>
+        <h1>Log in</h1>
+        <div class="input-group">
+          <%= f.label :email, 'Email' %>
+          <%= f.text_field :email, placeholder: 'Email', class: 'form-input' %>
+        </div>
+        <div class="input-group">
+          <%= f.label :password, 'Password' %>
+          <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
+        </div>
+        <div class="flex-items-between">
+          <%= link_to 'Sign Up', new_user_path %>
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
+        </div>
+        <%= render partial: 'shared/flash' %>
+      <% end %>
+    </div>
+  </div>
+</div>

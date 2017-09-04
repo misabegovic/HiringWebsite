@@ -1,0 +1,61 @@
+//Button sizes
+@mixin button-size($pd-vertical, $pd-horizontal, $line-height, $border-radius) {
+  padding: $pd-vertical $pd-horizontal;
+  line-height: $line-height;
+  border-radius: $border-radius;
+}
+
+//Button variants
+@mixin button-variant($c-text, $color-1, $color-2) {
+  color: $c-text;
+  @include gradient($color-1, $color-2);
+  border-color: $color-2;
+
+  &:focus,
+  &.focus {
+    border-color: darken($color-2, 15%);
+    @include gradient($color-2, darken($color-2, 15%));
+    color: $c-text;
+    outline: none;
+  }
+  &:hover {
+    border-color: darken($color-2, 12%);
+    @include gradient($color-2, darken($color-2, 10%));
+    color: $c-text;
+  }
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+      border-color: darken($color-2, 12%);
+      @include gradient($color-2, darken($color-2, 10%));
+      color: $c-text;
+
+    &:hover,
+    &:focus,
+    &.focus {
+      border-color: darken($color-2, 20%);
+      @include gradient($color-2, darken($color-2, 15%));
+      color: $c-text;
+      outline: none;
+    }
+  }
+
+  // Use case?
+  /*
+  &:active,
+  &.active,
+  .open > &.dropdown-toggle {
+    background-image: none;
+  }
+  */
+  &.disabled,
+  &[disabled],
+  fieldset[disabled] & {
+    &:hover,
+    &:focus,
+    &.focus {
+      background-color: $color-1;
+      border-color: $color-2;
+    }
+  }
+}

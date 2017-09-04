@@ -1,0 +1,13 @@
+<% if flash.present? %>
+  <ul>
+    <% flash.each do |message_type, message| %>
+      <% if message.is_a? String%>
+        <li <%= "class=errors" if (message_type != 'success') %> ><%= message%></li>
+      <%else%>
+        <% flash[message_type].each do |msg| %>
+          <li <%= 'class=errors' unless (message_type == 'success') %>><%= msg %></li>
+        <% end %>
+      <% end %>
+    <% end %>
+  </ul>
+<%end%>

@@ -1,0 +1,82 @@
+%column-default-width {
+  position: relative;
+  width: 100%;
+  min-height: 1px;
+  padding: 0 $gutter-width;
+}
+
+// Create media query breakpoint
+@mixin create-mediaquery($breakpoint, $min-or-max) {
+  @if($breakpoint == 0) {
+    @content;
+  } @else {
+    @media screen and (#{$min-or-max}-width: $breakpoint *1px) {
+      @content;
+    }
+  }
+}
+
+@mixin make-col-offset($size, $columns: $grid-columns) {
+  margin-left: percentage($size / $columns);
+}
+
+@mixin make-col-push($size, $columns: $grid-columns) {
+  left: if($size > 0, percentage($size / $columns), auto);
+}
+
+@mixin make-col-pull($size, $columns: $grid-columns) {
+  right: if($size > 0, percentage($size / $columns), auto);
+}
+
+@mixin make-col-modifier($type, $size, $columns) {
+  @if $type == push {
+    @include make-col-push($size, $columns);
+  } @else if $type == pull {
+    @include make-col-pull($size, $columns);
+  } @else if $type == offset {
+    @include make-col-offset($size, $columns);
+  }
+}
+
+// Create column classes
+@mixin create-col-classes($modifier, $grid-columns, $breakpoint) {
+  @for $i from 1 through $grid-columns {
+      .col#{$modifier}-#{$i} { @extend %column-default-width; }
+      
+      // Remove paddings on columns inside forms
+      form .row .col#{$modifier}-#{$i} { padding: 0; }
+  }
+
+  @include create-mediaquery($breakpoint, 'min') {
+    @for $i from 1 through $grid-columns {
+      form .row .col#{$modifier}-#{$i}:first-child {
+        padding-left: 0; 
+        padding-right: $gutter-width / 2;
+      }
+
+      form .row .col#{$modifier}-#{$i}:last-child {
+        padding-right: 0;
+        padding-left: $gutter-width / 2;
+      }
+
+      .col#{$modifier}-#{$i} {
+        flex: 0 0 percentage($i / $grid-columns);
+        max-width: percentage($i / $grid-columns);
+        padding: 0 $gutter-width;
+      }
+
+      @each $modifiers in (pull, push) {
+          .col-#{$modifiers}#{$modifier}-#{$i} {
+            @include make-col-modifier($modifiers, $i, $grid-columns)
+          }
+      }
+
+        @if not ($modifier == "" and $i == 0) {
+          .col-offset#{$modifier}-#{$i} {
+            @include make-col-modifier(offset, $i, $grid-columns)
+          }
+        }
+    }
+  }
+
+}

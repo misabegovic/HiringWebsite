@@ -1,0 +1,79 @@
+// Typography mixins
+
+@mixin f-pn200 {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 200;
+   font-style: normal;
+}
+
+@mixin f-pn200i {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 200;
+   font-style: italic;
+}
+
+@mixin f-pn400 {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 400;
+   font-style: normal;
+}
+
+@mixin f-pn400i {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 400;
+   font-style: italic;
+}
+
+@mixin f-pn600 {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 600;
+   font-style: normal;
+}
+
+@mixin f-pn600i {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 600;
+   font-style: italic;
+}
+
+@mixin f-pn800 {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 800;
+   font-style: normal;
+}
+
+@mixin f-pn800i {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 800;
+   font-style: italic;
+}
+
+@mixin f-pn900 {
+   font-family: 'Proxima Nova', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 900;
+   font-style: normal;
+}
+
+@mixin f-cr200 {
+   font-family: 'Circular', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 200;
+   font-style: normal;
+}
+
+@mixin f-cr400 {
+   font-family: 'Circular', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 400;
+   font-style: normal;
+}
+
+@mixin f-cr600 {
+   font-family: 'Circular', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 600;
+   font-style: normal;
+}
+
+@mixin f-cr800 {
+   font-family: 'Circular', 'Helvetica', 'Arial', sans-serif;
+   font-weight: 800;
+   font-style: normal;
+}

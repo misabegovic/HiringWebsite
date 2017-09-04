@@ -1,0 +1,39 @@
+// Media queries for hiding elements
+@each $modifier , $breakpoint in $map-grid-props {
+  @if($modifier == '') {
+    $modifier: '-xs';
+  }
+  @include create-mediaquery($breakpoint, 'max') {
+    .hidden#{$modifier}-down {
+      display: none !important;
+    }
+  }
+  @include create-mediaquery($breakpoint, 'min') {
+    .hidden#{$modifier}-up {
+      display: none !important;
+    }
+  }
+}
+
+// Creating columns for each screen size
+@each $modifier , $breakpoint in $map-grid-props {
+  @include create-col-classes($modifier, $grid-columns, $breakpoint);
+}
+
+.container {
+  position: relative;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+
+  .row {
+    @include display-flex;
+    width: 100%;
+  }
+
+  &-fluid {
+    @extend .container;
+    margin: 0;
+    max-width: 100%;
+  }
+}

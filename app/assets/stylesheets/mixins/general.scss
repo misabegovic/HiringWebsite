@@ -1,0 +1,45 @@
+// Clearfix
+@mixin clearfix {
+  &:after {
+    display: table;
+    clear: both;
+    content: '';
+  }
+}
+
+// Display flex
+@mixin display-flex {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display: flex;
+  -webkit-flex-wrap: wrap;
+      -ms-flex-wrap: wrap;
+          flex-wrap: wrap;
+}
+
+// Drop shadow
+@mixin box-shadow($x, $y, $b, $d, $color) {
+  -webkit-box-shadow: $x $y $b $d $color;  /* Safari 3-4, iOS 4.0.2 - 4.2, Android 2.3+ */
+  -moz-box-shadow:    $x $y $b $d $color;  /* Firefox 3.5 - 3.6 */
+  box-shadow:         $x $y $b $d $color;
+}
+
+// Create a gradient
+@mixin gradient($color-1, $color-2) {
+  background: $color-1;
+  background: -moz-linear-gradient(top, $color-1 0%, $color-2 100%);
+  background: -webkit-gradient(left top, left bottom, color-stop(0%, $color-1), color-stop(100%, $color-2));
+  background: -webkit-linear-gradient(top, $color-1 0%, $color-2 100%);
+  background: -o-linear-gradient(top, $color-1 0%, $color-2 100%);
+  background: -ms-linear-gradient(top, $color-1 0%, $color-2 100%);
+  background: linear-gradient(to bottom, $color-1 0%, $color-2 100%);
+  filter: progid:DXImageTransform.Microsoft.gradient( startColorstr="#{$color-1}", endColorstr="#{$color-2}", GradientType=0 );
+}
+
+@mixin transition($property, $duration, $function) {
+  -webkit-transition: $property $duration $function;
+  -moz-transition: $property $duration $function;
+  -o-transition: $property $duration $function;
+  transition: $property $duration $function;
+}

@@ -1,0 +1,28 @@
+<div class="nav-wrapper">
+  <nav class="nav-bar">
+    <%= link_to root_path, class: 'brand' do %>
+      <%= image_tag asset_path('chrome-logo') %>
+    <% end %>
+    <ul class="#nav-menu-js nav-menu dropdown-lg-down" aria-expanded="false">
+
+      <li class="right-nav-items">
+        <ul>
+          <% if session[:user_id].present? %>
+            <li class="nav-item"><%= link_to 'Dashboard', root_path, class: 'nav-link' %></li>
+            <li class="nav-item">
+              <%= link_to "Log Out", session_path(session[:user_id]), class: 'nav-link', method: :delete, remote: true %>
+            </li>
+          <% else %>
+            <li class="nav-item nav-item--left-border">
+              <%= link_to 'Log In', new_session_path, class: 'nav-link nav-link--standout' %>
+            </li>
+            <li class="nav-item">
+              <%= link_to 'Sign Up', new_user_path, class: 'nav-link nav-link--standout' %>
+            </li>
+          <% end %>
+        </ul>
+      </li>
+    </ul>
+    <button class="hamburger-menu hidden-lg-up" onclick="show_menu('#nav-menu-js')"><i class="fa fa-bars" aria-hidden="true"></i></button>
+  </nav>
+</div>
