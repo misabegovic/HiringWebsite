@@ -9,8 +9,10 @@
         <ul>
           <% if session[:user_id].present? %>
             <% if @current_user && @current_user.type == 'Company' %>
+              <li class="nav-item"><%= link_to 'Other Companies', companies_profiles_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to 'Candidates', companies_candidates_path, class: 'nav-link' %></li>
             <%elsif @current_user && @current_user.type == 'Customer' %>
+              <li class="nav-item"><%= link_to 'Other Customers', customers_profiles_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to 'Candidates', customers_candidates_path, class: 'nav-link' %></li>
             <%end%>
             <li class="nav-item">

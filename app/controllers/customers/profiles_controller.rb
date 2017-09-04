@@ -1,6 +1,11 @@
 module Customers
   class ProfilesController < Customers::AuthorizationController
-    before_action :set_profile
+    before_action :set_profile, except: [:index]
+    before_action :authorize_user, only: [:edit, :update]
+
+    def index
+      @customers = Customer.all
+    end
 
     def show; end
 
@@ -12,6 +17,10 @@ module Customers
 
     def set_profile
       @profile = Customer.find(params[:id])
+    end
+
+    def authorize_user
+      render :index if @current_user != @profile
     end
   end
 end
