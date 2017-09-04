@@ -1,0 +1,6 @@
+<% candidates.each do |candidate| %>
+	<div class="col-4-lg col-4-md col-12-sm">
+		<h1><%= candidate.email%></h1>
+		<%= link_to 'Show Profile', customers_candidate_path(candidate.id)%>
+	</div>
+<%end%>

@@ -5,4 +5,14 @@ Rails.application.routes.draw do
   resources :sessions, only: [:new, :create, :destroy]
   resources :customers, only: [:new, :create]
   resources :companies, only: [:new, :create]
+
+  namespace :companies do
+    resources :candidates, only: [:index, :show]
+    resources :profiles, only: [:show, :edit, :update]
+  end
+
+  namespace :customers do
+    resources :candidates, only: [:index, :show]
+    resources :profiles, only: [:show, :edit, :update]
+  end
 end

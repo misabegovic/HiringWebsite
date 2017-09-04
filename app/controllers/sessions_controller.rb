@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :redirect_to_dashboard, only: [:new, :create]
+  before_action :redirect_to_root, only: [:new, :create]
 
   def new; end
 
@@ -20,7 +20,7 @@ class SessionsController < ApplicationController
 
   private
 
-  def redirect_to_dashboard
+  def redirect_to_root
     redirect_to root_path if logged_in?
   end
 end

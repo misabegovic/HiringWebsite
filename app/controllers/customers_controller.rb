@@ -1,5 +1,6 @@
 class CustomersController < ApplicationController
-
+  before_action :redirect_to_root
+  
   def new
     @customer = Customer.new
   end
@@ -9,7 +10,7 @@ class CustomersController < ApplicationController
 
     if @customer.save
       session[:user_id] = @customer.id
-      redirect_to root_path
+      redirect_to customers_candidates_path
     else
       flash.now[:alert] = @customer.errors.full_messages
       render :new
@@ -24,5 +25,9 @@ class CustomersController < ApplicationController
       :password,
       :password_confirmation
     )
+  end
+
+  def redirect_to_root
+    redirect_to root_path if logged_in?
   end
 end
