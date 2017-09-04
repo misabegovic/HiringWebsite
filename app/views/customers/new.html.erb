@@ -1,8 +1,8 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6 col-offset-md-3">
-      <%= form_with model: @user, url: users_path, local: true do |f| %>
-        <h1>Create Account</h1>
+      <%= form_with model: @customer, url: customers_path, local: true do |f| %>
+        <h1>Create a Customer Account</h1>
         <div class="input-group">
           <%= f.label :email, 'Email' %>
           <%= f.text_field :email, placeholder: 'Email', class: 'form-input' %>
@@ -15,7 +15,8 @@
           <%= f.label :password_confirmation, 'Password Confirmation' %>
           <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: 'form-input'%>
         </div>
-        <div class="flex-items-right">
+        <div class="flex-items-between">
+          <%= link_to 'Log In', new_session_path %>
           <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
         </div>
       <% end %>

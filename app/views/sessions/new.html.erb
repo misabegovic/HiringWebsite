@@ -12,7 +12,8 @@
           <%= f.password_field :password, placeholder: 'Password', class: 'form-input' %>
         </div>
         <div class="flex-items-between">
-          <%= link_to 'Sign Up', new_user_path %>
+          <%= link_to 'Create a Company Profile', new_company_path %>
+          <%= link_to 'Create a Customer Profile', new_customer_path %>
           <%= f.submit 'Submit', class: 'btn btn-primary' %>
         </div>
         <%= render partial: 'shared/flash' %>
