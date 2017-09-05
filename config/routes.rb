@@ -9,10 +9,12 @@ Rails.application.routes.draw do
   namespace :companies do
     resources :candidates, only: [:index, :show]
     resources :profiles, only: [:index, :show, :edit, :update]
+    resources :offers, only: [:index, :show]
   end
 
   namespace :customers do
     resources :candidates, only: [:index, :show]
     resources :profiles, only: [:index, :show, :edit, :update]
+    resources :offers, only: [:index, :show]
   end
 end

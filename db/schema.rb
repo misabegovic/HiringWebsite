@@ -10,7 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20170904082235) do
+ActiveRecord::Schema.define(version: 20170905162102) do
+
+  create_table "Customers_Offers", id: false, force: :cascade do |t|
+    t.integer "Customer_id", null: false
+    t.integer "Offer_id", null: false
+    t.index ["Customer_id", "Offer_id"], name: "index_Customers_Offers_on_customer_id_and_offer_id"
+    t.index ["Offer_id", "Customer_id"], name: "index_Customers_Offers_on_offer_id_and_customer_id"
+  end
+
+  create_table "offers", force: :cascade do |t|
+    t.string "position"
+    t.integer "salary"
+    t.string "type_of_contract"
+    t.integer "company_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["company_id"], name: "index_offers_on_company_id"
+  end
 
   create_table "users", force: :cascade do |t|
     t.string "email"
