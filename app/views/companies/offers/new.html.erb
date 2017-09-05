@@ -1,0 +1,25 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-offset-md-3">
+      <%= form_with model: @offer, url: companies_offers_path, local: true, method: :post do |f| %>
+        <h1>Create A New Job Offer</h1>
+        <div class="input-group">
+          <%= f.label :position, 'Position' %>
+          <%= f.text_field :position, placeholder: 'Position', class: 'form-input' %>
+        </div>
+        <div class="input-group">
+          <%= f.label :type_of_contract, 'Type Of Contract' %>
+          <%= f.text_field :type_of_contract, placeholder: 'Type Of Contract', class: 'form-input' %>
+        </div>
+        <div class="input-group">
+          <%= f.label :salary, 'Salary' %>
+          <%= f.text_field :salary, placeholder: 'Salary', class: 'form-input' %>
+        </div>
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-primary' %>
+        </div>
+        <%= render partial: 'shared/flash' %>
+      <% end %>
+    </div>
+  </div>
+</div>

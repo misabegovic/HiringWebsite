@@ -1,0 +1,11 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12 center-items">
+			<h1>Your current Job Offers</h1>
+			<%= link_to 'Create New Job Offer', new_companies_offer_path %>
+		</div>
+	</div>
+	<div class="row">
+		<%= render @offers%>
+	</div>
+</div>

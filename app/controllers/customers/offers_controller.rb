@@ -6,11 +6,14 @@ module Customers
       @offers = Offer.all
     end
 
-    def show; end
+    def show
+      @already_applied = Applicant.find_by(offer: @offer, customer: @current_user)
+    end
 
     def update
-      @offer.customers << @current_user
-      render :show, id: @offer
+      Applicant.create(offer: @offer, customer: @current_user)
+      flash.now[:success] = 'You applied successfully'
+      redirect_to cutomers_offer_path(@offer)
     end
 
     private

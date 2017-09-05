@@ -1,0 +1,23 @@
+<div class="container">
+	<div class="row">
+		<div class="col-12 center-items">
+			<h1><%= @offer.company.title %></h1>
+		</div>
+	</div>
+	<div class="row">
+		<div class="col-6">
+			<h3>Position: <%= @offer.position %></h3>
+			<p>Type Of Contract: <%= @offer.type_of_contract%></p>
+			<p>Salary: <%= @offer.salary %></p>
+			<% if @already_applied.nil? %>
+				<%= link_to 'Show Interest', customers_offer_path(@offer), method: :patch%>
+			<%else%>
+				<h3>You already applied.</h3>
+			<%end%>
+		</div>
+		<div class="col-6">
+			<h3>Company Description:</h3>
+			<%= simple_format @offer.company.description%>
+		</div>
+	</div>
+</div>

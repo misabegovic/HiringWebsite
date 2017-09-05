@@ -4,7 +4,7 @@ module Companies
     before_action :authorize_user, only: [:edit, :update]
 
     def index
-      @companies = Company.all
+      @profiles = Company.all
     end
 
     def show; end
