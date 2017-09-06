@@ -13,7 +13,7 @@ module Customers
 
     def update
       Applicant.create(offer: @offer, customer: @current_user)
-      flash.now[:success] = 'You applied successfully'
+      flash[:success] = 'You applied successfully'
       redirect_to customers_offer_path(@offer)
     end
 

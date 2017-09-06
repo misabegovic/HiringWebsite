@@ -1,0 +1,48 @@
+<div class="container-fluid">
+  <div class="row">
+    <div class="col-md-6 col-offset-md-3">
+      <%= form_with model: @profile, url: companies_profile_path, method: :patch, local: true do |f| %>
+        <div class="center-items">
+          <h1>Edit Your Account</h1>
+        </div>
+        <div class="input-group">
+          <%= f.label :email, 'Email*' %>
+          <%= f.text_field :email, placeholder: 'Email', class: 'form-input' %>
+        </div> 
+        <div class="input-group">
+          <%= f.label :title, 'Company Title*' %>
+          <%= f.text_field :title, placeholder: 'Company Title', class: 'form-input' %>
+        </div>
+        <div class="input-group">
+          <%= f.label :contact_email, 'Contact Email*' %>
+          <%= f.text_field :contact_email, placeholder: 'Contact Email', class: 'form-input' %>
+        </div> 
+        <div class="input-group">
+          <%= f.label :employees, 'Number of Employees (optional)' %>
+          <%= f.text_field :employees, placeholder: 'Number of Employees', class: 'form-input'%>
+        </div>
+        <div class="input-group">
+          <%= f.label :description, 'Company Description*' %>
+          <%= f.text_area :description, placeholder: 'Company Description', class: 'form-input'%>
+        </div>
+        <div class="seperate-top-bottom">
+          <h4>If you want to update your password: </h4>
+        </div>
+        <div class="input-group">
+          <%= f.label :password, 'Password (optional)' %>
+          <%= f.password_field :password, placeholder: 'Password', class: 'form-input'%>
+        </div>
+        <div class="input-group">
+          <%= f.label :password_confirmation, 'Password Confirmation (optional)' %>
+          <%= f.password_field :password_confirmation, placeholder: 'Password Confirmation', class: 'form-input'%>
+        </div>
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-12 center-items">
+      <%= render 'shared/flash'%>
+    </div>
+  </div>
+</div>

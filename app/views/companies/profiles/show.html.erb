@@ -1,1 +1,25 @@
-<h1><%= @profile.contact_email %></h1>
+<div class="container">
+  <% if !@profile.properties.empty? %>
+    <div class="row">
+      <div class="col-12">
+        <h1><%= @profile.title %></h1>
+      </div>
+      <div class="col-8">
+        <h4>Description: </h4>
+        <%= simple_format @profile.description %>
+      </div>
+      <div class="col-4">
+        <h4>Employees: <%= @profile.employees %></h4>
+        <p>Contact Email: <%= @profile.contact_email %></p>
+        <%= link_to 'Edit Profile', edit_companies_profile_path(@profile) if @profile == @current_user %>
+      </div>
+    </div>
+  <%else%>
+    <div class="row">
+      <div class="col-12">
+        <h1>This Company need to update account before being visible.</h1>
+        <%= link_to 'Update Profile', edit_companies_profile_path(@profile) if @profile == @current_user %>
+      </div>
+    </div>
+  <%end%>
+</div>
