@@ -11,6 +11,7 @@
 			<p>Salary: <%= @offer.salary %></p>
 			<% if @already_applied.nil? %>
 				<%= link_to 'Show Interest', customers_offer_path(@offer), method: :patch%>
+				<%= render 'shared/flash'%>
 			<%else%>
 				<h3>You already applied.</h3>
 			<%end%>

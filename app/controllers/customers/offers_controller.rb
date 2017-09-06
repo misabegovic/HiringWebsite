@@ -1,6 +1,7 @@
 module Customers
   class OffersController < Customers::AuthorizationController
     before_action :set_offer, except: [:index]
+    before_action :redirect_if_customer_properties_empty, only: [:update]
 
     def index
       @offers = Offer.all
@@ -20,6 +21,13 @@ module Customers
 
     def set_offer
       @offer = Offer.find_by(id: params[:id])
+    end
+
+    def redirect_if_customer_properties_empty
+      if @current_user.properties.empty?
+        flash[:alert] = 'Before applying for a job, you need to update your account with neccessary data.'
+        redirect_to customers_offer_path(@offer)
+      end
     end
   end
 end

@@ -1,9 +1,9 @@
 <% profiles.each do |profile| %>
-	<% if profile != @current_user %>
+	<% if profile != @current_user && !profile.properties.empty? %>
 		<div class="col-4-lg col-4-md col-12-sm">
-			<p><%= profile.contact_email if profile.contact_email %></p>
-			<%= simple_format profile.description if profile.description %>
-			<h4>Employees: <%= profile.employees if profile.employees %></h4>
+			<p><%= profile.contact_email %></p>
+			<%= simple_format profile.description %>
+			<h4>Employees: <%= profile.employees %></h4>
 			<h4>Job Offers: <%= profile.offers.length %></h4>
 			<%= link_to 'Show Profile', companies_profile_path(profile.id)%>
 		</div>

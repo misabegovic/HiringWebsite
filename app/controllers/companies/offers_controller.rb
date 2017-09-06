@@ -2,6 +2,7 @@ module Companies
   class OffersController < Companies::AuthorizationController
     before_action :set_offer, except: [:index, :new, :create]
     before_action :authorize_user, except: [:index, :new, :create]
+    before_action :redirect_if_company_properties_empty, only: [:create]
 
     def index
       @offers = @current_user.offers
@@ -43,6 +44,13 @@ module Companies
         :salary,
         :type_of_contract
       )
+    end
+
+    def redirect_if_company_properties_empty
+      if @current_user.properties.empty?
+        flash.now[:alert] = 'Before creating a job offer, you need to update your account with neccessary data.'
+        render :new
+      end
     end
 
     def set_offer
