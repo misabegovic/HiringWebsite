@@ -1,1 +1,33 @@
-<h1><%= @candidate.email %></h1>
+<div class="container">
+  <% if !@candidate.properties.empty? %>
+    <div class="row">
+      <div class="col-12">
+        <h1><%= @candidate.full_name %></h1>
+        <p>Email: <%= @candidate.email %></p>
+      </div>
+      <div class="col-8">
+        <h4>This User applied to <%= @candidate.applicants.length %> Job Offers</h4>
+        <% if @candidate.motivation_letter.present? %>
+          <h4>Motivation Letter</h4>
+          <%= simple_format @candidate.motivation_letter %>
+        <%end%>
+        <% if @candidate.experience.present? %>
+          <h4>Experience</h4>
+          <%= simple_format @candidate.experience %>
+        <%end%>
+      </div>
+      <div class="col-4">
+        <h4>Skills: </h4>
+        <% @candidate.skills.split(',').each do |skill| %>
+          <p><%= skill%></p>
+        <%end%>
+      </div>
+    </div>
+  <%else%>
+    <div class="row">
+      <div class="col-12">
+        <h1>This Customer need to update account before being visible.</h1>
+      </div>
+    </div>
+  <%end%>
+</div>

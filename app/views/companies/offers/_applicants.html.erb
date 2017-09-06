@@ -1,7 +1,7 @@
 <% applicants.each do |applicant| %>
 	<div class="col-12">
 		<%= link_to companies_candidate_path(applicant) do %>
-			<p><%= applicant.email %></p>
+			<p><%= applicant.full_name %></p>
 		<%end%>
 	</div>
 <%end%>

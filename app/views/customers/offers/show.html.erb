@@ -21,4 +21,10 @@
 			<%= simple_format @offer.company.description%>
 		</div>
 	</div>
+	<div class="row">
+		<div class="col-12 center-items">
+			<h1>Offers from this company: </h1>
+		</div>
+		<%= render @offer.company.offers %>
+	</div>
 </div>

@@ -1,0 +1,9 @@
+<% offers.each do |offer| %>
+	<div class="col-4">
+		<%= link_to customers_offer_path(offer) do %>
+			<h3><%= offer.position %></h3>
+			<p>Type Of Contract: <%= offer.type_of_contract%></p>
+			<p>Salary: <%= offer.salary %></p>
+		<%end%>
+	</div>
+<%end%>

@@ -1,1 +1,31 @@
-<h1><%= @candidate.email %></h1>
+<div class="container">
+  <% if !@candidate.properties.empty? %>
+    <div class="row">
+      <div class="col-12">
+        <h1><%= @candidate.title %></h1>
+      </div>
+      <div class="col-8">
+        <h4>Description: </h4>
+        <%= simple_format @candidate.description %>
+      </div>
+      <div class="col-4">
+        <h4>Employees: <%= @candidate.employees %></h4>
+        <p>Contact Email: <%= @candidate.contact_email %></p>
+      </div>
+    </div>
+    <% if !@candidate.offers.empty? %>
+      <div class="row">
+        <div class="col-12 center-items">
+          <h1>Offers from this company: </h1>
+        </div>
+        <%= render 'offers', offers: @candidate.offers %>
+      </div>
+    <%end%>
+  <%else%>
+    <div class="row">
+      <div class="col-12">
+        <h1>This Company need to update account before being visible.</h1>
+      </div>
+    </div>
+  <%end%>
+</div>
