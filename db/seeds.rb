@@ -33,12 +33,5 @@ Company.create(
 )
 Company.create(
   email: 'zemlja@djece.com',
-  password: 'demodemodemo',
-  properties: {
-    title: 'Zemlja Djece',
-    employees: '10',
-    vacancies: '2',
-    description: 'We Are Zemlja Djece',
-    contact_email: 'info@djece.com'
-  }
+  password: 'demodemodemo'
 )
