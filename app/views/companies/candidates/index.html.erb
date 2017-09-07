@@ -3,6 +3,41 @@
 		<div class="col-12 center-items">
 			<h1>All Candidates</h1>
 		</div>
-		<%= render 'candidates', candidates: @candidates%>
+		<div class="col-md-4">
+      <%= form_with url: companies_candidates_path, local: true, method: :get do |f| %>
+        <h1>Search by skill</h1>
+        <div class="input-group">
+          <%= f.text_field :skills, placeholder: 'Skills (seperate each by comma)', class: 'form-input' %>
+        </div> 
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= form_with url: companies_candidates_path, local: true, method: :get do |f| %>
+        <h1>Search by name</h1>
+        <div class="input-group">
+          <%= f.text_field :name, placeholder: 'Name', class: 'form-input' %>
+        </div> 
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= form_with url: companies_candidates_path, local: true, method: :get do |f| %>
+        <h1>Search by email</h1>
+        <div class="input-group">
+          <%= f.text_field :email, placeholder: 'Email', class: 'form-input' %>
+        </div> 
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
+        </div>
+      <% end %>
+    </div>
+	</div>
+	<div  class="row">
+		<%= render 'candidates', candidates: @candidates %>
 	</div>
 </div>

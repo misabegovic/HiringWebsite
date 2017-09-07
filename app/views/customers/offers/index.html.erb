@@ -3,6 +3,39 @@
 		<div class="col-12 center-items">
 			<h1>Current Job Offers</h1>
 		</div>
+		<div class="col-md-4">
+      <%= form_with url: customers_offers_path, local: true, method: :get do |f| %>
+        <h1>Search by Position</h1>
+        <div class="input-group">
+          <%= f.text_field :position, placeholder: 'Position', class: 'form-input' %>
+        </div> 
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= form_with url: customers_offers_path, local: true, method: :get do |f| %>
+        <h1>Search by Type Of Contract</h1>
+        <div class="input-group">
+          <%= f.text_field :type_of_contract, placeholder: 'Email', class: 'form-input' %>
+        </div> 
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
+        </div>
+      <% end %>
+    </div>
+    <div class="col-md-4">
+      <%= form_with url: customers_offers_path, local: true, method: :get do |f| %>
+        <h1>Search by Salary</h1>
+        <div class="input-group">
+          <%= f.text_field :salary, placeholder: 'Email', class: 'form-input' %>
+        </div> 
+        <div class="flex-items-between">
+          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
+        </div>
+      <% end %>
+    </div>
 	</div>
 	<div class="row">
 		<%= render @offers%>
