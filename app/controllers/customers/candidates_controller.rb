@@ -1,22 +1,17 @@
 module Customers
   class CandidatesController < Customers::AuthorizationController
+    before_action :set_fascade
+
     def index
-      @candidates = Company.all
-      search
+      @candidates_fascade.search(params[:search]) if params[:search]
     end
 
-    def show
-      @candidate = Company.find(params[:id])
-    end
+    def show; end
 
     private
 
-    def search
-      if params[:title]
-        @candidates = @candidates.select { |c| c.title.downcase.include? params[:title].downcase if c.title }
-      elsif params[:contact_email]
-        @candidates = @candidates.select { |c| c.contact_email.downcase.include? params[:contact_email].downcase if c.contact_email }
-      end
+    def set_fascade
+      @candidates_fascade = CompaniesFascade.new(params)
     end
   end
 end

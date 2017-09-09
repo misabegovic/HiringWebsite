@@ -1,16 +1,12 @@
 module Companies
   class OffersController < Companies::AuthorizationController
-    before_action :set_offer, except: [:index, :new, :create]
+    before_action :set_fascade
     before_action :authorize_user, except: [:index, :new, :create]
     before_action :redirect_if_company_properties_empty, only: [:create]
 
-    def index
-      @offers = @current_user.offers
-    end
+    def index; end
 
-    def new
-      @offer = Offer.new
-    end
+    def new; end
 
     def create
       @offer = Offer.new(offer_params)
@@ -24,17 +20,7 @@ module Companies
       end
     end
 
-    def show
-      @applicants = @offer.applicants.map(&:customer)
-    end
-
-    def edit; end
-
-    def update; end
-
-    def destroy
-      
-    end
+    def show; end
 
     private
 
@@ -53,12 +39,12 @@ module Companies
       end
     end
 
-    def set_offer
-      @offer = Offer.find_by(id: params[:id])
+    def set_fascade
+      @offers_fascade = OffersFascade.new(params)
     end
 
     def authorize_user
-      redirect_to root_path if @current_user != @offer.company
+      redirect_to root_path if @current_user != @offers_fascade.offer.company
     end
   end
 end

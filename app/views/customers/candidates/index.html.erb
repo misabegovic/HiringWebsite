@@ -4,7 +4,7 @@
 			<h1>All Candidates</h1>
 		</div>
     <div class="col-md-4">
-      <%= form_with url: customers_candidates_path, local: true, method: :get do |f| %>
+      <%= form_with scope: :search, url: customers_candidates_path, local: true, method: :get do |f| %>
         <h1>Search by Title</h1>
         <div class="input-group">
           <%= f.text_field :title, placeholder: 'Title', class: 'form-input' %>
@@ -15,7 +15,7 @@
       <% end %>
     </div>
     <div class="col-md-4">
-      <%= form_with url: customers_candidates_path, local: true, method: :get do |f| %>
+      <%= form_with scope: :search, url: customers_candidates_path, local: true, method: :get do |f| %>
         <h1>Search by Email</h1>
         <div class="input-group">
           <%= f.text_field :contact_email, placeholder: 'Email', class: 'form-input' %>
@@ -27,6 +27,6 @@
     </div>
 	</div>
 	<div  class="row">
-		<%= render 'candidates', candidates: @candidates %>
+		<%= render 'candidates', candidates: @candidates_fascade.companies %>
 	</div>
 </div>

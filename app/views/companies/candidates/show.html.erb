@@ -1,24 +1,24 @@
 <div class="container">
-  <% if !@candidate.properties.empty? %>
+  <% if @candidates_fascade.has_properties? %>
     <div class="row">
       <div class="col-12">
-        <h1><%= @candidate.full_name %></h1>
-        <p>Email: <%= @candidate.email %></p>
+        <h1><%= @candidates_fascade.customer.full_name %></h1>
+        <p>Email: <%= @candidates_fascade.customer.email %></p>
       </div>
       <div class="col-8">
-        <h4>This User applied to <%= @candidate.applicants.length %> Job Offers</h4>
-        <% if @candidate.motivation_letter.present? %>
+        <h4>This User applied to <%= @candidates_fascade.number_of_applications %> Job Offers</h4>
+        <% if @candidates_fascade.has_motivation_letter? %>
           <h4>Motivation Letter</h4>
-          <%= simple_format @candidate.motivation_letter %>
+          <%= simple_format @candidates_fascade.customer.motivation_letter %>
         <%end%>
-        <% if @candidate.experience.present? %>
+        <% if @candidates_fascade.has_experience? %>
           <h4>Experience</h4>
-          <%= simple_format @candidate.experience %>
+          <%= simple_format @candidates_fascade.customer.experience %>
         <%end%>
       </div>
       <div class="col-4">
         <h4>Skills: </h4>
-        <% @candidate.skills.split(',').each do |skill| %>
+        <% @candidates_fascade.customer_skills.each do |skill| %>
           <p><%= skill%></p>
         <%end%>
       </div>
