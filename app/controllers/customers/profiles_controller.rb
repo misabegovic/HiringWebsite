@@ -1,17 +1,17 @@
 module Customers
   class ProfilesController < Customers::AuthorizationController
-    before_action :set_profile, except: [:index]
+    before_action :set_fascade
     before_action :authorize_user, only: [:edit, :update]
 
-    def index
-      @profiles = Customer.all
-    end
+    def index; end
 
     def show; end
 
     def edit; end
 
     def update
+      @profile = @profiles_fascade.customer
+
       if @profile.update(profile_params)
         flash.now[:success] = 'You have successfully updated your account.'
       else
@@ -34,12 +34,12 @@ module Customers
       )
     end
 
-    def set_profile
-      @profile = Customer.find(params[:id])
+    def set_fascade
+      @profiles_fascade = CustomersFascade.new(params)
     end
 
     def authorize_user
-      render :index if @current_user != @profile
+      render :index if @current_user != @profiles_fascade.customer
     end
   end
 end

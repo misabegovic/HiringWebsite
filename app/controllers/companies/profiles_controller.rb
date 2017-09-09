@@ -1,17 +1,17 @@
 module Companies
   class ProfilesController < Companies::AuthorizationController
-    before_action :set_profile, except: [:index]
+    before_action :set_fascade
     before_action :authorize_user, only: [:edit, :update]
 
-    def index
-      @profiles = Company.all
-    end
+    def index; end
 
     def show; end
 
     def edit; end
 
     def update
+      @profile = @profiles_fascade.company
+
       if @profile.update(profile_params)
         flash.now[:success] = 'You have successfully updated your account.'
       else
@@ -34,12 +34,12 @@ module Companies
       )
     end
 
-    def set_profile
-      @profile = Company.find(params[:id])
+    def set_fascade
+      @profiles_fascade = CompaniesFascade.new(params)
     end
 
     def authorize_user
-      render :index if @current_user != @profile
+      render :index if @current_user != @profiles_fascade.company
     end
   end
 end

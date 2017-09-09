@@ -1,24 +1,24 @@
 <div class="container">
-  <% if !@profile.properties.empty? %>
+  <% if @profiles_fascade.has_properties? %>
     <div class="row">
       <div class="col-12">
-        <h1><%= @profile.title %></h1>
+        <h1><%= @profiles_fascade.company.title %></h1>
       </div>
       <div class="col-8">
         <h4>Description: </h4>
-        <%= simple_format @profile.description %>
+        <%= simple_format @profiles_fascade.company.description %>
       </div>
       <div class="col-4">
-        <h4>Employees: <%= @profile.employees %></h4>
-        <p>Contact Email: <%= @profile.contact_email %></p>
-        <%= link_to 'Edit Profile', edit_companies_profile_path(@profile) if @profile == @current_user %>
+        <h4>Employees: <%= @profiles_fascade.company.employees %></h4>
+        <p>Contact Email: <%= @profiles_fascade.company.contact_email %></p>
+        <%= link_to 'Edit Profile', edit_companies_profile_path(@profiles_fascade.company) if @profiles_fascade.company == @current_user %>
       </div>
     </div>
   <%else%>
     <div class="row">
       <div class="col-12">
         <h1>This Company need to update account before being visible.</h1>
-        <%= link_to 'Update Profile', edit_companies_profile_path(@profile) if @profile == @current_user %>
+        <%= link_to 'Update Profile', edit_companies_profile_path(@profiles_fascade.company) if @profiles_fascade.company == @current_user %>
       </div>
     </div>
   <%end%>

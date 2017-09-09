@@ -1,7 +1,7 @@
 <div class="container-fluid">
   <div class="row">
     <div class="col-md-6 col-offset-md-3">
-      <%= form_with model: @profile, url: companies_profile_path, method: :patch, local: true do |f| %>
+      <%= form_with model: @profiles_fascade.company, url: companies_profile_path, method: :patch, local: true do |f| %>
         <div class="center-items">
           <h1>Edit Your Account</h1>
         </div>

@@ -1,24 +1,24 @@
 <div class="container">
-  <% if !@profile.properties.empty? %>
+  <% if @profiles_fascade.has_properties? %>
     <div class="row">
       <div class="col-12">
-        <h1><%= @profile.full_name %></h1>
+        <h1><%= @profiles_fascade.customer.full_name %></h1>
       </div>
       <div class="col-8">
-        <h4>This User applied to <%= @profile.applicants.length %> Job Offers</h4>
-        <% if @profile.motivation_letter.present? %>
+        <h4>This User applied to <%= @profiles_fascade.number_of_applications %> Job Offers</h4>
+        <% if @profiles_fascade.has_motivation_letter? %>
           <h4>Motivation Letter</h4>
-          <%= simple_format @profile.motivation_letter %>
+          <%= simple_format @profiles_fascade.customer.motivation_letter %>
         <%end%>
-        <% if @profile.experience.present? %>
+        <% if @profiles_fascade.has_experience? %>
           <h4>Experience</h4>
-          <%= simple_format @profile.experience %>
+          <%= simple_format @profiles_fascade.customer.experience %>
         <%end%>
       </div>
       <div class="col-4">
-        <%= link_to 'Edit Profile', edit_customers_profile_path(@profile) if @profile == @current_user %>
+        <%= link_to 'Edit Profile', edit_customers_profile_path(@profiles_fascade.customer) if @profiles_fascade.customer == @current_user %>
         <h4>Skills: </h4>
-        <% @profile.skills.split(',').each do |skill| %>
+        <% @profiles_fascade.customer_skills.each do |skill| %>
           <p><%= skill%></p>
         <%end%>
       </div>
@@ -27,7 +27,7 @@
     <div class="row">
       <div class="col-12">
         <h1>This Customer need to update account before being visible.</h1>
-        <%= link_to 'Update Profile', edit_customers_profile_path(@profile) if @profile == @current_user %>
+        <%= link_to 'Update Profile', edit_customers_profile_path(@profiles_fascade.customer) if @profiles_fascade.customer == @current_user %>
       </div>
     </div>
   <%end%>
