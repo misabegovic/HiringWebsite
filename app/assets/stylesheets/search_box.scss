@@ -1,0 +1,26 @@
+.search-box {
+  display: none;
+
+  &-active {
+    display: block;
+  }
+}
+
+.input {
+  width: 50%;
+  font-size: $t-small;
+  padding: $s-smaller;
+  line-height: 1.25;
+  color: black;
+  background-color: $c-white;
+  background-image: none;
+  -webkit-background-clip: padding-box;
+  background-clip: padding-box;
+  border: 1px solid rgba(0,0,0,.15);
+  border-radius: $br-base;
+
+  &:focus {
+    border: 1px solid $c-blue;
+    outline: none;
+  }
+}

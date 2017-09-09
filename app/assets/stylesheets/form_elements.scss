@@ -8,7 +8,7 @@ button, input, optgroup, select, textarea {
   -webkit-box-shadow: 0 0 0px 1000px $c-white inset;
 }
 
-form {
+.form {
   margin-bottom: $s-largest;
   padding: $s-largest;
   background: $c-white;
@@ -17,10 +17,6 @@ form {
   label {
     text-transform: uppercase;
     font-size: $t-small;
-  }
-
-  textarea {
-    resize: vertical;
   }
 }
 

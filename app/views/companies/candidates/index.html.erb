@@ -1,43 +1,56 @@
 <div class="container">
 	<div class="row">
-		<div class="col-12 center-items">
+		<div class="col-lg-6 col-md-6 col-sm-12">
 			<h1>All Candidates</h1>
 		</div>
-		<div class="col-md-4">
-      <%= form_with scope: :search, url: companies_candidates_path, local: true, method: :get do |f| %>
-        <h1>Search by skill</h1>
-        <div class="input-group">
-          <%= f.text_field :skills, placeholder: 'Skills (seperate each by comma)', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= form_with scope: :search, url: companies_candidates_path, local: true, method: :get do |f| %>
-        <h1>Search by name</h1>
-        <div class="input-group">
-          <%= f.text_field :name, placeholder: 'Name', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= form_with scope: :search, url: companies_candidates_path, local: true, method: :get do |f| %>
-        <h1>Search by email</h1>
-        <div class="input-group">
-          <%= f.text_field :email, placeholder: 'Email', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      Search:
+      <%= link_to 'By Skills', '#', data: 'by_skills', id: 'links', remote: true %>
+      <%= link_to 'By Name', '#', data: 'by_name', id: 'links', remote: true %>
+      <%= link_to 'By Email', '#', data: 'by_email', id: 'links', remote: true %>
+      <div class="search-box" id="by_skills">
+      <%= form_with scope: :search, url: companies_candidates_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :skills, placeholder: 'Skills (seperate each by comma)', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class="search-box" id="by_name">
+        <%= form_with scope: :search, url: companies_candidates_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :name, placeholder: 'Name', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class="search-box" id="by_email">
+        <%= form_with scope: :search, url: companies_candidates_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :email, placeholder: 'Email', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
     </div>
 	</div>
-	<div  class="row">
+	<div  class="row" id="content">
 		<%= render 'candidates', candidates: @candidates_fascade.customers %>
 	</div>
 </div>
+
+<script>
+  var links = document.querySelectorAll('#links');
+  var search_boxes = document.querySelectorAll('.search-box');
+  var active = false;
+
+  if ( !active ) {
+    search_boxes[0].classList.add('search-box-active');
+    active = true;
+  }
+
+  makeActive = function () {
+    for (var i = 0; i < search_boxes.length; i++) {
+      search_boxes[i].classList.remove('search-box-active');
+    }
+    document.getElementById(this.getAttribute("data")).classList.add('search-box-active');
+  };
+
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', makeActive);
+  }
+</script>

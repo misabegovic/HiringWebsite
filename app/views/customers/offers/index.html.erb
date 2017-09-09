@@ -1,43 +1,56 @@
 <div class="container">
 	<div class="row">
-		<div class="col-12 center-items">
-			<h1>Current Job Offers</h1>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      <h1>Current Job Offers</h1>
+    </div>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      Search:
+      <%= link_to 'By Position', '#', data: 'by_position', id: 'links', remote: true %>
+      <%= link_to 'By Email', '#', data: 'by_email', id: 'links', remote: true %>
+      <%= link_to 'By Salary', '#', data: 'by_salary', id: 'links', remote: true %>
+      <div class="search-box" id="by_position">
+        <%= form_with scope: :search, url: customers_offers_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :position, placeholder: 'Position', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class="search-box" id="by_email">
+        <%= form_with scope: :search, url: customers_offers_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :type_of_contract, placeholder: 'Email', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class="search-box" id="by_salary">
+        <%= form_with scope: :search, url: customers_offers_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :salary, placeholder: 'Salary', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
 		</div>
-		<div class="col-md-4">
-      <%= form_with scope: :search, url: customers_offers_path, local: true, method: :get do |f| %>
-        <h1>Search by Position</h1>
-        <div class="input-group">
-          <%= f.text_field :position, placeholder: 'Position', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= form_with scope: :search, url: customers_offers_path, local: true, method: :get do |f| %>
-        <h1>Search by Type Of Contract</h1>
-        <div class="input-group">
-          <%= f.text_field :type_of_contract, placeholder: 'Email', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= form_with scope: :search, url: customers_offers_path, local: true, method: :get do |f| %>
-        <h1>Search by Salary</h1>
-        <div class="input-group">
-          <%= f.text_field :salary, placeholder: 'Email', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
-    </div>
 	</div>
-	<div class="row">
+	<div class="row" id="content">
 		<%= render @offers_fascade.offers%>
 	</div>
 </div>
+
+<script>
+  var links = document.querySelectorAll('#links');
+  var search_boxes = document.querySelectorAll('.search-box');
+  var active = false;
+
+  if ( !active ) {
+    search_boxes[0].classList.add('search-box-active');
+    active = true;
+  }
+
+  makeActive = function () {
+    for (var i = 0; i < search_boxes.length; i++) {
+      search_boxes[i].classList.remove('search-box-active');
+    }
+    document.getElementById(this.getAttribute("data")).classList.add('search-box-active');
+  };
+
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', makeActive);
+  }
+</script>

@@ -1,32 +1,49 @@
 <div class="container">
 	<div class="row">
-		<div class="col-12 center-items">
+		<div class="col-lg-6 col-md-6 col-sm-12">
 			<h1>All Candidates</h1>
 		</div>
-    <div class="col-md-4">
-      <%= form_with scope: :search, url: customers_candidates_path, local: true, method: :get do |f| %>
-        <h1>Search by Title</h1>
-        <div class="input-group">
-          <%= f.text_field :title, placeholder: 'Title', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
-    </div>
-    <div class="col-md-4">
-      <%= form_with scope: :search, url: customers_candidates_path, local: true, method: :get do |f| %>
-        <h1>Search by Email</h1>
-        <div class="input-group">
-          <%= f.text_field :contact_email, placeholder: 'Email', class: 'form-input' %>
-        </div> 
-        <div class="flex-items-between">
-          <%= f.submit 'Submit', class: 'btn btn-success btn-wide' %>
-        </div>
-      <% end %>
+    <div class="col-lg-6 col-md-6 col-sm-12">
+      Search:
+      <%= link_to 'By Title', '#', data: 'by_title', id: 'links', remote: true %>
+      <%= link_to 'By Email', '#', data: 'by_email', id: 'links', remote: true %>
+      <div class="search-box" id="by_title">
+      <%= form_with scope: :search, url: customers_candidates_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :title, placeholder: 'Title', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
+      <div class="search-box" id="by_email">
+        <%= form_with scope: :search, url: customers_candidates_path, remote: true, method: :get do |f| %>
+          <%= f.text_field :contact_email, placeholder: 'Email', class: 'input' %>
+          <%= f.submit 'Submit', class: 'btn btn-success' %>
+        <% end %>
+      </div>
     </div>
 	</div>
-	<div  class="row">
+	<div  class="row" id="content">
 		<%= render 'candidates', candidates: @candidates_fascade.companies %>
 	</div>
 </div>
+
+<script>
+  var links = document.querySelectorAll('#links');
+  var search_boxes = document.querySelectorAll('.search-box');
+  var active = false;
+
+  if ( !active ) {
+    search_boxes[0].classList.add('search-box-active');
+    active = true;
+  }
+
+  makeActive = function () {
+    for (var i = 0; i < search_boxes.length; i++) {
+      search_boxes[i].classList.remove('search-box-active');
+    }
+    document.getElementById(this.getAttribute("data")).classList.add('search-box-active');
+  };
+
+  for (var i = 0; i < links.length; i++) {
+    links[i].addEventListener('click', makeActive);
+  }
+</script>
