@@ -41,8 +41,8 @@ class OffersFascade
 
   def update
     Applicant.create(offer: @offer, customer: @current_user)
-    CompanyMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_later
-    CustomerMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_later
+    CompanyMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_now
+    CustomerMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_now
   end
 
   def company_title

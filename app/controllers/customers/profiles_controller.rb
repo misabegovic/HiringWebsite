@@ -13,7 +13,7 @@ module Customers
       if @profiles_fascade.update(profile_params)
         flash.now[:success] = 'You have successfully updated your account.'
       else
-        flash.now[:alert] = @profiles_fascade.errors.
+        flash.now[:alert] = @profiles_fascade.errors
       end
       render :edit, id: @profiles_fascade.customer.id
     end
