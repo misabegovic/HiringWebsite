@@ -10,14 +10,12 @@ module Customers
     def edit; end
 
     def update
-      @profile = @profiles_fascade.customer
-
-      if @profile.update(profile_params)
+      if @profiles_fascade.update(profile_params)
         flash.now[:success] = 'You have successfully updated your account.'
       else
-        flash.now[:alert] = @profile.errors.full_messages
+        flash.now[:alert] = @profiles_fascade.errors.
       end
-      render :edit, id: @profile.id
+      render :edit, id: @profiles_fascade.customer.id
     end
 
     private

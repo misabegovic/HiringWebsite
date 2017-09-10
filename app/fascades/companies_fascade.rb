@@ -1,9 +1,19 @@
 class CompaniesFascade
-  attr_accessor :company, :companies
+  attr_accessor :company, :companies, :errors
 
   def initialize(params)
     @company = Company.find_by(id: params[:id]) if params[:id]
     @companies = Company.all
+  end
+
+  def update(params)
+    if @company.update(params)
+      #LeadMailer.send_query(@params.to_h).deliver_later
+      true
+    else
+      @errors = @company.errors.full_messages
+      false
+    end
   end
 
   def search(params)

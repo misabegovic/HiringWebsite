@@ -1,9 +1,19 @@
 class CustomersFascade
-  attr_accessor :customer, :customers
+  attr_accessor :customer, :customers, :errors
 
   def initialize(params)
     @customer = Customer.find_by(id: params[:id]) if params[:id]
     @customers = Customer.all
+  end
+
+  def update(params)
+    if @customer.update(params)
+      #LeadMailer.send_query(@params.to_h).deliver_later
+      true
+    else
+      @errors = @customer.errors.full_messages
+      false
+    end
   end
 
   def search(params)

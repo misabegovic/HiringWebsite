@@ -1,10 +1,24 @@
 class OffersFascade
-  attr_accessor :offer, :offers, :current_user_offers
+  attr_accessor :offer, :offers, :current_user_offers, :errors
 
   def initialize(params, current_user = nil)
     @offer = Offer.find_by(id: params[:id]) if params[:id]
     @offers = Offer.all
+    @current_user = current_user if current_user
     @current_user_offers = current_user.offers if current_user
+  end
+
+  def save(params)
+    @offer = Offer.new(params)
+    @offer.company = @current_user
+
+    if @offer.save
+      #LeadMailer.send_query(@params.to_h).deliver_later
+      true
+    else
+      @errors = @offer.errors.full_messages
+      false
+    end
   end
 
   def search(params)

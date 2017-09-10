@@ -9,13 +9,10 @@ module Companies
     def new; end
 
     def create
-      @offer = Offer.new(offer_params)
-      @offer.company = @current_user
-
-      if @offer.save
-        redirect_to companies_offer_path(@offer.id)
+      if @offers_fascade.save(offer_params)
+        redirect_to companies_offer_path(@offers_fascade.offer.id)
       else
-        flash.now[:alert] = @offer.errors.full_messages
+        flash.now[:alert] = @offers_fascade.errors
         render :new
       end
     end
@@ -40,7 +37,7 @@ module Companies
     end
 
     def set_fascade
-      @offers_fascade = OffersFascade.new(params)
+      @offers_fascade = OffersFascade.new(params, @current_user)
     end
 
     def authorize_user
