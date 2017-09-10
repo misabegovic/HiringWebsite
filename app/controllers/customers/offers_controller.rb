@@ -10,9 +10,12 @@ module Customers
     def show; end
 
     def update
-      @offers_fascade.update
-      flash[:success] = 'You applied successfully'
-      redirect_to customers_offer_path(@offers_fascade.offer)
+      if @offers_fascade.update
+        flash.now[:success] = 'You applied successfully'
+      else
+        flash.now[:alert] = 'You already applied'
+      end
+      render :show, id: @offers_fascade.offer.id
     end
 
     private
