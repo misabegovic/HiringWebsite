@@ -5,7 +5,7 @@ class OffersFascade
     @offer = Offer.find_by(id: params[:id]) if params[:id]
     @offers = Offer.all
     @current_user = current_user if current_user
-    @current_user_offers = current_user.offers if current_user
+    @current_user_offers = current_user.offers if current_user && current_user.type == 'Company'
   end
 
   def save(params)
@@ -41,6 +41,8 @@ class OffersFascade
 
   def update
     Applicant.create(offer: @offer, customer: @current_user)
+    CompanyMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_later
+    CustomerMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_later
   end
 
   def company_title

@@ -8,7 +8,7 @@ class CompaniesFascade
 
   def update(params)
     if @company.update(params)
-      #LeadMailer.send_query(@params.to_h).deliver_later
+      CompanyMailer.send_update_notification(@company).deliver_later
       true
     else
       @errors = @company.errors.full_messages

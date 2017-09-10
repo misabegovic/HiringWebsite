@@ -18,7 +18,7 @@ module Customers
     private
 
     def set_fascade
-      @offers_fascade = OffersFascade.new(params)
+      @offers_fascade = OffersFascade.new(params, @current_user)
     end
 
     def redirect_if_customer_properties_empty
