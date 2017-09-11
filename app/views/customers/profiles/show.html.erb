@@ -10,12 +10,16 @@
         <h4>Skills: </h4>
         <%= @profiles_fascade.customer.skills %>
         <% if @profiles_fascade.has_motivation_letter? %>
-          <h4>Motivation Letter</h4>
-          <%= simple_format @profiles_fascade.customer.motivation_letter %>
+          <div class="margin-top-add">
+            <h4>Motivation Letter</h4>
+            <%= simple_format @profiles_fascade.customer.motivation_letter %>
+          </div>
         <%end%>
         <% if @profiles_fascade.has_experience? %>
-          <h4>Experience</h4>
-          <%= simple_format @profiles_fascade.customer.experience %>
+          <div class="margin-top-add">
+            <h4>Experience</h4>
+            <%= simple_format @profiles_fascade.customer.experience %>
+          </div>
         <%end%>
       </div>
       <div class="col-4 col-offset-1">

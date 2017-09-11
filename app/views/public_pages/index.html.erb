@@ -24,9 +24,15 @@
 </div>
 <div class="container margin-top-add">
 	<div class="row">
-		<div class="col-12 seperate-top-bottom">
+		<div class="col-12 center-items margin-top-add">
 			<h1>Some of our Companies</h1>
 		</div>
-		<%= render 'companies/profiles/profiles', profiles: @companies%>
+	</div>
+	<div class="row margin-top-add">
+		<div class="col-md-10 col-offset-2">
+			<div class="row">
+				<%= render 'profiles', profiles: @companies %>
+			</div>
+		</div>
 	</div>
 </div>

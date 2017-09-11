@@ -11,7 +11,7 @@
             <% if @current_user && @current_user.type == 'Company' %>
               <li class="nav-item"><%= link_to 'Candidates', companies_candidates_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to 'Other Companies', companies_profiles_path, class: 'nav-link' %></li>
-              <li class="nav-item"><%= link_to 'Show My Offers', companies_offers_path, class: 'nav-link' %></li>
+              <li class="nav-item"><%= link_to 'Show Offers', companies_offers_path, class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to 'My Profile', companies_profile_path(@current_user), class: 'nav-link' %></li>
               <li class="nav-item"><%= link_to 'Edit Profile', edit_companies_profile_path(@current_user), class: 'nav-link' %></li>
             <%elsif @current_user && @current_user.type == 'Customer' %>

@@ -41,7 +41,10 @@ module Companies
     end
 
     def authorize_user
-      redirect_to root_path if @current_user != @offers_fascade.offer.company
+      if @current_user != @offers_fascade.offer.company
+        flash[:alert] = 'You are not allowed to see this content.'
+        redirect_to companies_profile_path(@offers_fascade.offer.company)
+      end
     end
   end
 end
