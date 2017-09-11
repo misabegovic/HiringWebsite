@@ -18,9 +18,7 @@
       <div class="col-4">
         <%= link_to 'Edit Profile', edit_customers_profile_path(@profiles_fascade.customer) if @profiles_fascade.customer == @current_user %>
         <h4>Skills: </h4>
-        <% @profiles_fascade.customer_skills.each do |skill| %>
-          <p><%= skill%></p>
-        <%end%>
+        <%= @profiles_fascade.customer.skills %>
       </div>
     </div>
   <%else%>

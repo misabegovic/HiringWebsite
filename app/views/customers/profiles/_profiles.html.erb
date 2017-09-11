@@ -1,12 +1,15 @@
 <% profiles.each do |profile| %>
   <% if profile != @current_user && !profile.properties.empty? %>
-    <div class="col-4-lg col-4-md col-12-sm">
-      <h4><%= profile.full_name %></h4>
-      <h4>Skills: </h4>
-      <% profile.skills.split(',').each do |skill| %>
-        <p><%= skill%></p>
-      <%end%>
-      <%= link_to 'Show Profile', customers_profile_path(profile.id)%>
+    <div class="col-3 phone-card">
+      <div class="phone-card__title">
+        <h3><%= profile.full_name %></h3>
+      </div>
+      <div class="phone-card__summary">
+        <p>Skills: <%= profile.skills %></p>
+      </div>
+      <div class="phone-card__title">
+        <%= link_to 'Show Profile', customers_profile_path(profile) %>
+      </div>
     </div>
   <%end%>
 <%end%>

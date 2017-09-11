@@ -1,11 +1,17 @@
 <% candidates.each do |candidate| %>
   <% if !candidate.properties.empty? %>
-  	<div class="col-4-lg col-4-md col-12-sm">
-  		<p><%= candidate.contact_email%></p>
-  		<%= simple_format candidate.description %>
-  		<h4>Employees: <%= candidate.employees %></h4>
-  		<h4>Job Offers: <%= candidate.offers.length %></h4>
-  		<%= link_to 'Show Profile', customers_candidate_path(candidate.id)%>
-  	</div>
+  	<div class="col-3 phone-card">
+			<div class="phone-card__title">
+				<h3><%= candidate.title %></h3>
+			</div>
+			<div class="phone-card__summary">
+				<p>Employees: <%= candidate.employees %></p>
+				<p>Job Offers: <%= candidate.offers.length %></p>
+			</div>
+			<div class="phone-card__title">
+				<%= link_to 'Show Profile', customers_candidate_path(candidate.id)%>
+			</div>
+		</div>
   <%end%>
 <%end%>
+

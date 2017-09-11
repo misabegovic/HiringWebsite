@@ -1,11 +1,16 @@
 <% profiles.each do |profile| %>
 	<% if profile != @current_user && !profile.properties.empty? %>
-		<div class="col-4-lg col-4-md col-12-sm">
-			<p><%= profile.contact_email %></p>
-			<%= simple_format profile.description %>
-			<h4>Employees: <%= profile.employees %></h4>
-			<h4>Job Offers: <%= profile.offers.length %></h4>
-			<%= link_to 'Show Profile', companies_profile_path(profile.id)%>
+		<div class="col-3 phone-card">
+			<div class="phone-card__title">
+				<h3><%= profile.title %></h3>
+			</div>
+			<div class="phone-card__summary">
+				<p>Employees: <%= profile.employees %></p>
+				<p>Job Offers: <%= profile.offers.length %></p>
+			</div>
+			<div class="phone-card__title">
+				<%= link_to 'Show Profile', customers_profile_path(profile.id)%>
+			</div>
 		</div>
 	<%end%>
 <%end%>
