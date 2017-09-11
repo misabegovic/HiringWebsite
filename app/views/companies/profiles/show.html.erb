@@ -1,17 +1,24 @@
 <div class="container">
   <% if @profiles_fascade.has_properties? %>
     <div class="row">
-      <div class="col-12">
+      <div class="col-8 col-offset-2 center-items">
         <h1><%= @profiles_fascade.company.title %></h1>
       </div>
-      <div class="col-8">
+      <div class="col-4 col-offset-1">
+        <h4>Employees: <%= @profiles_fascade.company.employees %></h4>
+        <p>Contact Email: <%= @profiles_fascade.company.contact_email %></p>
         <h4>Description: </h4>
         <%= simple_format @profiles_fascade.company.description %>
       </div>
-      <div class="col-4">
-        <h4>Employees: <%= @profiles_fascade.company.employees %></h4>
-        <p>Contact Email: <%= @profiles_fascade.company.contact_email %></p>
-        <%= link_to 'Edit Profile', edit_companies_profile_path(@profiles_fascade.company) if @profiles_fascade.company == @current_user %>
+      <div class="col-4 col-offset-1">
+        <div class="row">
+          <div class="col-12">
+            <h4>Available Positions:</h4>
+          </div>
+        </div>
+        <div class="row">
+          <%= render 'profile_offers', offers: @profiles_fascade.company.offers %>
+        </div>
       </div>
     </div>
   <%else%>

@@ -1,4 +1,4 @@
-<% offers.each do |offer| %>
+<% offers.each do |offer|%>
 	<div class="phone-card">
 		<div class="phone-card__title">
 			<h3><%= offer.position %></h3>
@@ -6,9 +6,10 @@
 		<div class="phone-card__summary">
 			<p>Type Of Contract: <%= offer.type_of_contract%></p>
 			<p>Salary: <%= offer.salary %></p>
+			<p>Applicants: <%= offer.applicants.length %></p>
 		</div>
 		<div class="phone-card__title">
-			<%= link_to 'Read More', customers_offer_path(offer) %>
+			<%= link_to 'Read More', companies_offer_path(offer) %>
 		</div>
 	</div>
 <%end%>

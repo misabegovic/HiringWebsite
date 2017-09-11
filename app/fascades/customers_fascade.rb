@@ -48,6 +48,10 @@ class CustomersFascade
     @customer.applicants.length
   end
 
+  def customer_applications
+    @customer.applicants.map(&:offer)
+  end
+
   def customer_skills
     @customer.skills.split(',')
   end

@@ -1,11 +1,14 @@
 <div class="container">
   <% if @profiles_fascade.has_properties? %>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 center-items">
         <h1><%= @profiles_fascade.customer.full_name %></h1>
       </div>
-      <div class="col-8">
-        <h4>This User applied to <%= @profiles_fascade.number_of_applications %> Job Offers</h4>
+    </div>
+    <div class="row margin-top-add">
+      <div class="col-4 col-offset-1">
+        <h4>Skills: </h4>
+        <%= @profiles_fascade.customer.skills %>
         <% if @profiles_fascade.has_motivation_letter? %>
           <h4>Motivation Letter</h4>
           <%= simple_format @profiles_fascade.customer.motivation_letter %>
@@ -15,10 +18,11 @@
           <%= simple_format @profiles_fascade.customer.experience %>
         <%end%>
       </div>
-      <div class="col-4">
-        <%= link_to 'Edit Profile', edit_customers_profile_path(@profiles_fascade.customer) if @profiles_fascade.customer == @current_user %>
-        <h4>Skills: </h4>
-        <%= @profiles_fascade.customer.skills %>
+      <div class="col-4 col-offset-1">
+        <div class="row">
+          <h4>This User applied to <%= @profiles_fascade.number_of_applications %> Job Offers</h4>
+        </div>
+        <%= render 'offers', offers: @profiles_fascade.customer_applications %>
       </div>
     </div>
   <%else%>

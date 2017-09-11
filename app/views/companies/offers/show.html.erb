@@ -1,20 +1,18 @@
-<div class="container">
+<div class="container margin-top-add">
 	<div class="row">
-		<div class="col-12 center-items">
+		<div class="col-5 col-offset-1 center-items">
 			<h1><%= @offers_fascade.company_title %></h1>
 		</div>
-	</div>
-	<div class="row">
-		<div class="col-6">
+		<div class="col-5 col-offset-1">
 			<h3>Position: <%= @offers_fascade.offer.position %></h3>
 			<p>Type Of Contract: <%= @offers_fascade.offer.type_of_contract %></p>
 			<p>Salary: <%= @offers_fascade.offer.salary %></p>
 		</div>
-		<div class="col-6">
+	</div>
+	<div class="row margin-top-add">
+		<div class="col-12">
 			<h3>Applicants: <%= @offers_fascade.applicants.length %></h3>
-			<div class="row">
-				<%= render 'applicants', applicants: @offers_fascade.applicants %>
-			</div>
 		</div>
+		<%= render 'companies/candidates/candidates', candidates: @offers_fascade.applicants %>
 	</div>
 </div>

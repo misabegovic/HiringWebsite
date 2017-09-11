@@ -1,26 +1,28 @@
 <div class="container">
   <% if @candidates_fascade.has_properties? %>
     <div class="row">
-      <div class="col-12">
+      <div class="col-12 center-items">
         <h1><%= @candidates_fascade.company.title %></h1>
       </div>
-      <div class="col-8">
+      <div class="col-5 col-offset-1">
+        <h4>Employees: <%= @candidates_fascade.company.employees %></h4>
+        <p>Contact Email: <%= @candidates_fascade.company.contact_email %></p>
         <h4>Description: </h4>
         <%= simple_format @candidates_fascade.company.description %>
       </div>
-      <div class="col-4">
-        <h4>Employees: <%= @candidates_fascade.company.employees %></h4>
-        <p>Contact Email: <%= @candidates_fascade.company.contact_email %></p>
+      <div class="col-5 col-offset-1">
+        <% if @candidates_fascade.has_offers? %>
+          <div class="row">
+            <div class="col-12 center-items">
+              <h1>Offers from this company: </h1>
+            </div>
+            <div class="margin-top-add">
+              <%= render 'offers', offers: @candidates_fascade.company.offers %>
+            </div>
+          </div>
+        <%end%>
       </div>
     </div>
-    <% if @candidates_fascade.has_offers? %>
-      <div class="row">
-        <div class="col-12 center-items">
-          <h1>Offers from this company: </h1>
-        </div>
-        <%= render 'offers', offers: @candidates_fascade.company.offers %>
-      </div>
-    <%end%>
   <%else%>
     <div class="row">
       <div class="col-12">

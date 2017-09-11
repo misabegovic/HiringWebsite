@@ -4,7 +4,7 @@
 			<h1><%= @offers_fascade.company_title %></h1>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row margin-top-add">
 		<div class="col-6">
 			<h3>Position: <%= @offers_fascade.offer.position %></h3>
 			<p>Type Of Contract: <%= @offers_fascade.offer.type_of_contract%></p>
@@ -17,9 +17,9 @@
 			<%= simple_format @offers_fascade.company_description%>
 		</div>
 	</div>
-	<div class="row">
+	<div class="row margin-top-add">
 		<div class="col-12 center-items">
-			<h1>Offers from this company: </h1>
+			<h1>Other offers from this company: </h1>
 		</div>
 		<%= render @offers_fascade.company_offers %>
 	</div>
