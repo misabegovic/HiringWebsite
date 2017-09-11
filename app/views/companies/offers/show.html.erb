@@ -12,7 +12,9 @@
 		</div>
 		<div class="col-6">
 			<h3>Applicants: <%= @offers_fascade.applicants.length %></h3>
-			<%= render 'applicants', applicants: @offers_fascade.applicants %>
+			<div class="row">
+				<%= render 'applicants', applicants: @offers_fascade.applicants %>
+			</div>
 		</div>
 	</div>
 </div>

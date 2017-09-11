@@ -1,0 +1,77 @@
+.phone-card {
+  background-color: $c-blue--darker;
+  padding-bottom: $s-micro;
+  margin-bottom: $s-small;
+  margin-right: $s-small;
+  border-radius: 5px;
+  overflow: hidden;
+  max-height: 172px;
+  min-height: 172px;
+
+  &__title {
+    overflow: hidden;
+    line-height: $ln-smaller;
+    margin-top: $s-small;
+    margin-left: $s-small;
+    border-bottom: $s-micro;
+
+    h3 {
+      @include f-pn400;
+      color: $c-white;
+    }
+
+    a {
+      @include f-pn200;
+      font-size: $t-large;
+      display: none;
+    }
+  }
+
+  &__summary {
+    overflow: hidden;
+    color: $c-white;
+    margin-top: $s-micro;
+    margin-left: $s-small;
+    display: block;
+    @include f-pn200;
+
+    p {
+      margin: 0;
+    }
+  }
+
+  &:hover {
+    transition-property: background-color;
+    transition-duration: 1s;
+    transition-timing-function: ease;
+    background-color: $c-blue--darkest;
+    max-height: 172px;
+    min-height: 172px;
+
+    .phone-card__title {
+      a {
+        display: block;
+      }
+    }
+
+    .phone-card__summary {
+      display: none;
+      transition: opacity 0.5s, height ease 0.5s;
+      transition-delay: 0.5s;
+    }
+  }
+
+  &__on_click {
+    @include transition(background-color, 1s, ease);
+    background-color: $c-blue--darkest;
+    max-height: 172px;
+    min-height: 172px;
+    
+    .phone-card__summary {
+      opacity: 1;
+      height: auto;
+      transition: opacity 0.5s, height ease 0.5s;
+      transition-delay: 0.5s;
+    }
+  }
+}

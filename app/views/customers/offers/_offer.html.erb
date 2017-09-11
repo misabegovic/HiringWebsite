@@ -1,9 +1,14 @@
 <% if @offers_fascade.not_currently_opened(offer) %>
-	<div class="col-4">
-		<%= link_to customers_offer_path(offer) do %>
+	<div class="col-3 phone-card">
+		<div class="phone-card__title">
 			<h3><%= offer.position %></h3>
+		</div>
+		<div class="phone-card__summary">
 			<p>Type Of Contract: <%= offer.type_of_contract%></p>
 			<p>Salary: <%= offer.salary %></p>
-		<%end%>
+		</div>
+		<div class="phone-card__title">
+			<%= link_to 'Read More', customers_offer_path(offer) %>
+		</div>
 	</div>
 <%end%>
