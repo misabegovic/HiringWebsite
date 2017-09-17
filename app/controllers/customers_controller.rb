@@ -2,17 +2,18 @@ class CustomersController < ApplicationController
   before_action :redirect_to_root
   
   def new
-    @customer = Customer.new
+    @customer_form = CustomerForm.new
   end
 
   def create
-    @customer = Customer.new(customer_params)
+    @customer_form = CustomerForm.new(customer_params)
+    customer = @customer_form.create_new_customer
 
-    if @customer.save
-      session[:user_id] = @customer.id
+    if customer
+      session[:user_id] = customer.id
       redirect_to customers_candidates_path
     else
-      flash.now[:alert] = @customer.errors.full_messages
+      flash.now[:alert] = @customer_form.errors.full_messages
       render :new
     end
   end
@@ -20,10 +21,9 @@ class CustomersController < ApplicationController
   private
 
   def customer_params
-    params.require(:customer).permit(
+    params.require(:customer_form).permit(
       :email,
-      :password,
-      :password_confirmation
+      :password
     )
   end
 

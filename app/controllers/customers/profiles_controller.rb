@@ -7,13 +7,17 @@ module Customers
 
     def show; end
 
-    def edit; end
+    def edit
+      @customer_form = CustomerForm.new
+    end
 
     def update
-      if @profiles_fascade.update(profile_params)
+      @customer_form = CustomerForm.new(profile_params)
+
+      if @customer_form.update_this_customer(profile_params, @current_user)
         flash.now[:success] = 'You have successfully updated your account.'
       else
-        flash.now[:alert] = @profiles_fascade.errors
+        flash.now[:alert] = @customer_form.errors
       end
       render :edit, id: @profiles_fascade.customer.id
     end
@@ -21,10 +25,9 @@ module Customers
     private
 
     def profile_params
-      params.require(:customer).permit(
+      params.require(:customer_form).permit(
         :email,
         :password,
-        :password_confirmation,
         :motivation_letter,
         :experience,
         :skills,

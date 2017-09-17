@@ -1,31 +1,25 @@
 class CustomersFascade
-  attr_accessor :customer, :customers, :errors
+  attr_accessor :customer, :customers
 
   def initialize(params)
     @customer = Customer.find_by(id: params[:id]) if params[:id]
-    @customers = Customer.all
-  end
-
-  def update(params)
-    if @customer.update(params)
-      #LeadMailer.send_query(@params.to_h).deliver_later
-      true
-    else
-      @errors = @customer.errors.full_messages
-      false
-    end
   end
 
   def search(params)
     if params[:skills]
+      @customers = get_all_customers
       params[:skills].split(',').map do |skill|
-        @customers = @customers.select { |c| c.skills.downcase.include? skill.downcase if c.skills }
+        @customers = @customers.where("properties LIKE ?", "%#{skill}%")
       end
     elsif params[:name]
-      @customers = @customers.select { |c| c.full_name.downcase.include? params[:name].downcase if c.full_name }
+      @customers = get_all_customers.where("name LIKE ?", "%#{params[:name]}%")
     elsif params[:email]
-      @customers = @customers.select { |c| c.email.downcase.include? params[:email].downcase if c.email }
+      @customers = get_all_customers.where("email LIKE ?", "%#{params[:email]}%")
     end
+  end
+
+  def get_all_customers
+    Customer.all
   end
 
   def has_properties?

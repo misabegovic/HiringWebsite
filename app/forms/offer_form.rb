@@ -6,8 +6,6 @@ class OfferForm < FormObject
 
   def create_new_offer(current_user)
     if valid?
-      # Put all logic related to creation of new Todo 
-      # in here — log actions, dispatch e-mails etc
       create_offer(current_user)
     end
   end
@@ -28,9 +26,9 @@ class OfferForm < FormObject
   def create_offer(current_user)
     Offer.create(
       company: current_user,
-      position: @position,
-      salary: @salary,
-      type_of_contract: @type_of_contract
+      position: position,
+      salary: salary,
+      type_of_contract: type_of_contract
     )
   end
 end

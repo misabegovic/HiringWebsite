@@ -31,7 +31,7 @@
   <div class="row margin-top-add">
     <div class="col-md-10 col-offset-2">
     	<div  class="row" id="content">
-    		<%= render 'candidates', candidates: @candidates_fascade.customers %>
+    		<%= render 'candidates', candidates: @candidates_fascade.get_all_customers %>
     	</div>
     </div>
   </div>
