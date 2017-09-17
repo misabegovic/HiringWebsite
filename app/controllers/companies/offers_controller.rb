@@ -1,18 +1,23 @@
 module Companies
   class OffersController < Companies::AuthorizationController
-    before_action :set_fascade
+    before_action :set_fascade, except: [:create, :new]
     before_action :authorize_user, except: [:index, :new, :create]
     before_action :redirect_if_company_properties_empty, only: [:create]
 
     def index; end
 
-    def new; end
+    def new
+      @offer_form = OfferForm.new
+    end
 
     def create
-      if @offers_fascade.save(offer_params)
-        redirect_to companies_offer_path(@offers_fascade.offer.id)
+      @offer_form = OfferForm.new(offer_params)
+      offer = @offer_form.create_new_offer(@current_user)
+
+      if offer
+        redirect_to companies_offer_path(offer)
       else
-        flash.now[:alert] = @offers_fascade.errors
+        flash.now[:alert] = @offer_form.errors.full_messages
         render :new
       end
     end
@@ -22,7 +27,7 @@ module Companies
     private
 
     def offer_params
-      params.require(:offer).permit(
+      params.require(:offer_form).permit(
         :position,
         :salary,
         :type_of_contract

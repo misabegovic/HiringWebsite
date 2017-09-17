@@ -1,33 +1,18 @@
 class OffersFascade
-  attr_accessor :offer, :offers, :current_user_offers, :errors
+  attr_accessor :offer, :offers
 
   def initialize(params, current_user = nil)
     @offer = Offer.find_by(id: params[:id]) if params[:id]
-    @offers = Offer.all
     @current_user = current_user if current_user
-    @current_user_offers = current_user.offers if current_user && current_user.type == 'Company'
-  end
-
-  def save(params)
-    @offer = Offer.new(params)
-    @offer.company = @current_user
-
-    if @offer.save
-      #LeadMailer.send_query(@params.to_h).deliver_later
-      true
-    else
-      @errors = @offer.errors.full_messages
-      false
-    end
   end
 
   def search(params)
     if params[:position]
-      @offers = @offers.select { |c| c.position.downcase.include? params[:position].downcase }
+      @offers = get_all_offers.where("position LIKE ?", "%#{params[:position]}%")
     elsif params[:salary]
-      @offers = @offers.select { |c| c.salary.downcase.include? params[:salary].downcase  }
+      @offers = get_all_offers.where("salary LIKE ?", "%#{params[:salary]}%")
     elsif params[:type_of_contract]
-      @offers = @offers.select { |c| c.type_of_contract.downcase.include? params[:type_of_contract].downcase  }
+      @offers = get_all_offers.where("type_of_contract LIKE ?", "%#{params[:type_of_contract]}%")
     end
   end
 
@@ -36,21 +21,19 @@ class OffersFascade
   end
 
   def new_offer
-    Offer.new
+    OfferForm.new
+  end
+
+  def get_all_offers
+    Offer.all
+  end
+
+  def get_current_user_offers
+    @current_user.offers if @current_user && @current_user.type == 'Company'
   end
 
   def update
-    application = Applicant.new(offer: @offer, customer: @current_user)
-    already_applied = Applicant.find_by(offer: @offer, customer: @current_user)
-
-    if already_applied == nil
-      application.save
-      CompanyMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_later
-      CustomerMailer.send_offers_notification(@offer.company, @current_user, @offer).deliver_later
-      true
-    else
-      false
-    end
+    OfferForm.update_offer(@offer, @current_user)
   end
 
   def company_title
